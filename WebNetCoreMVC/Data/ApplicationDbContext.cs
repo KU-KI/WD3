@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebNetCoreMVC.Models;
 
@@ -13,7 +10,7 @@ namespace WebNetCoreMVC.Data
             : base(options)
         {
         }
-        public DbSet<WebNetCoreMVC.Models.Student> Student { get; set; }
-        public DbSet<WebNetCoreMVC.Models.Teacher> Teacher { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<Teacher> Teacher { get; set; }
     }
 }
