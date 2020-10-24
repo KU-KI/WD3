@@ -18,14 +18,6 @@ namespace WebNetCoreMVC.Models
         public string LastName { get; set; }
         //[NotMapped]
         [Display(Name = "Fotografia")]
-        public string ImageName
-        {
-            get; set;
-            //get { return _imageNames.Split(delimiter); }
-            //set
-            //{
-            //    _imageNames = string.Join($"{delimiter}", value);
-            //}
-        }
+        public string ImageName { get; set; }
     }
 }
