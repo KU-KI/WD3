@@ -1,5 +1,7 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
+#https://hub.docker.com/_/microsoft-dotnet-sdk?ref=login
+
 #https://hub.docker.com/_/microsoft-dotnet-aspnet
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 #Linux amd64 - Debian 11
