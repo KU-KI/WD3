@@ -6,10 +6,15 @@ services:
     image: linuxserver/mariadb
     #image: mariadb/server:10.5
     #image: mysql:8.0
+    #image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: wd3_db
     ports:
-      - 3306:3306
-    environment:
+      - 3306:3306  #mssql 1433:1433
+    #environment:  #mssql - https://hub.docker.com/_/microsoft-mssql-server
+      #ACCEPT_EULA: "Y"
+      #MSSQL_SA_PASSWORD: example_123
+      ##MSSQL_PID: ....  #nemusi byt zadane, default: Developer, ... Express, Standard, Enterprise, EnterpriseCore 
+    environment:  #mysql,mariadb
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Bratislava
