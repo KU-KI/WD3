@@ -7,20 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 //Configuration for Docker MSSQL/MYSQL Databases
 var server = builder.Configuration["DBServer"] ?? "localhost";
 var port = builder.Configuration["DBPort"] ?? "3306";   //mssql 1433, mysql 3306
-var user = builder.Configuration["DBUser"] ?? "wd3";  //mssql SA, mysql wd3
-var password = builder.Configuration["DBPassword"] ?? "wd3";
-var database = builder.Configuration["Database"] ?? "wd3";
+var user = builder.Configuration["DBUser"] ?? "wd333";  //mssql SA, mysql wd3
+var password = builder.Configuration["DBPassword"] ?? "wd333";
+var database = builder.Configuration["Database"] ?? "wd333";
 
 // Add services to the container.
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = $"server={server};user={user};password={password};database={database}";
 builder.Services.AddDbContext<ApplicationDbContext>(options => options
             //Local MS SQL Database
             //.UseSqlServer(connectionString));
             //Docker MS SQL Database
             //.UseSqlServer($"Server={server},{port};Initial Catalog={database};User ID={user};Password={password}"));
             //Docker MySQL Database
-            .UseMySql($"server={server};user={user};password={password};database={database}",
-                      new MariaDbServerVersion(new Version(10, 5, 8)))//, // use MariaDbServerVersion for MariaDB, MySqlServerVersion for MySQL
+            .UseMySql(connectionString, 
+                      ServerVersion.AutoDetect(connectionString))
+                      //new MariaDbServerVersion(new Version(10, 5, 8)))//, // use MariaDbServerVersion for MariaDB, MySqlServerVersion for MySQL
                       //mySqlOptions => mySqlOptions.CharSetBehavior(CharSetBehavior.NeverAppend))
             // Everything from this point on is optional but helps with debugging.
             //.EnableSensitiveDataLogging()

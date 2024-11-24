@@ -1,10 +1,9 @@
-version: '3.7'
 
 services:
 
   db:
     image: linuxserver/mariadb
-    #image: mariadb/server:10.5
+    #image: mariadb:10.5
     #image: mysql:8.0
     #image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: wd3_db
@@ -23,10 +22,10 @@ services:
       - MYSQL_USER=wd333
       - MYSQL_PASSWORD=wd333
     volumes:
-      #- ./app/db/data:/var/lib/mysql
-      #- /home/pi/Documents/Backups/uniot/db/data:/var/lib/mysql
-      - ./app/db/config:/config
-      #- /home/pi/Documents/Backups/uniot/db/config:/config
+      #- ./app/db:/var/lib/mysql                                     #PC
+      #- /home/pi/Documents/Backups/uniot/db/data:/var/lib/mysql    #Raspberry Pi
+      - ./app/db/config:/config                                    #PC + linuxserver/mariadb
+      #- /home/pi/Documents/Backups/uniot/db/config:/config         #Raspberry Pi + linuxserver/mariadb
     networks:
       - wd3_net
     restart: unless-stopped
